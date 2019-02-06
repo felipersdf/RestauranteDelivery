@@ -1,11 +1,13 @@
 package fachada;
 
 import java.util.ArrayList;
-
+import java.time.*;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.TreeMap;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 import repositorio.Restaurante;
 import modelo.Produto;
@@ -15,7 +17,7 @@ import modelo.Pedido;
 
 public class Fachada {
 	public static Restaurante restaurante = new Restaurante();
-	public static int idPedido = 0, num_produto = 1, num_combo = 20;
+	public static int idPedido = 0, num_produto = 1;
 	public static String nome= "";
 	
 	
@@ -51,7 +53,7 @@ public class Fachada {
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 		
 		for(Pedido p: restaurante.getPedidos()) {
-			if (p.getCliente().equals(telefone))
+			if (p.getCliente().getTelefone().equals(telefone))
 				pedidos.add(p);
 		}
 		return pedidos;
@@ -184,7 +186,7 @@ public class Fachada {
 		String dataFormatada = formato.format(data);
 		
 		pedido.setData(dataFormatada);
-		
+
 		pedido.setFechado(true);
 	}
 }
@@ -200,7 +202,7 @@ public class Fachada {
 			throw new Exception("A conta ja foi fechada");
 		}else {
 			
-		java.util.Date data = Calendar.getInstance().getTime();
+		Date data = Calendar.getInstance().getTime();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		String dataFormatada = formato.format(data);
 		
@@ -210,12 +212,13 @@ public class Fachada {
 		pedido.setFechado(true);
 	}
 }
-	public static double calcularArrecadacao(String data) {
+	public static double calcularArrecadacao(int data) {
 		double total = 0;
-		ArrayList<Pedido> pedidos_dia = restaurante.getPedidos();
-		
-		for(Pedido ped: pedidos_dia) {
-			if(ped.getData().equals(data)) {
+		ArrayList<Pedido> pedidos = restaurante.getPedidos();
+        DateTimeFormatter fr = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+		for(Pedido ped: pedidos) {
+			if(LocalDate.parse(ped.getData(),fr).getDayOfMonth() == data) {
 			ArrayList<Produto> produtos_dia = ped.getProdutos();
 			for(Produto prod: produtos_dia) {
 				total += prod.getPreco();
@@ -224,42 +227,43 @@ public class Fachada {
 		}
 		return total;
 	}
-	///// RESOLVER PROBLEMA
-	public static Combo criarCombo(ArrayList<Integer> lista) {
+	public static Combo criarCombo(String nome, ArrayList<Integer> lista) {
 		Combo c = null;
 		double precos = 0;
 		ArrayList<Produto> produtos = restaurante.getProdutos();
-		ArrayList<Produto> prodselec = new ArrayList();
+		ArrayList<Produto> prodselec = new ArrayList<>();
 		
 		for(Integer i: lista) {
-			prodselec.add(produtos.get(i));
+			prodselec.add(produtos.get(i-1));
 		}
 		for(Produto p: prodselec) {
 			precos += p.getPreco();
 
 		}
 		precos -= (precos * 10/100);;
-		c = new Combo(nome, precos,  num_combo, prodselec);
-		num_combo++;
+		c = new Combo(nome, precos,  num_produto, prodselec);
+		num_produto++;
 		return c;
 	}
 
 	public static void excluirPedido(int id) {
 		Pedido pedido = restaurante.localizarPedido(id);
+		ArrayList<Pedido> peds = restaurante.getPedidos();
 		ArrayList<Produto> prod = pedido.getProdutos();
 		Collection<Cliente> cli = restaurante.getClientes().values();
 		
-		if(pedido.isFechado()) {
+		for(Pedido p: peds) {
+			if(p.getId() == id) {
+				peds.remove(p);
 			restaurante.remover(pedido);
-			for(Produto p: prod) {
-				pedido.remover(p);
+			for(Produto po: prod) {
+				pedido.remover(po);
 			}
 			for(Cliente c: cli) {
 				if(c.equals(pedido.getCliente())) {
 					c.remover(pedido);
 				}
 			}
-
 		}
 }
 	
@@ -269,6 +273,6 @@ public class Fachada {
 
 
 }
-	
+}
 	
 	

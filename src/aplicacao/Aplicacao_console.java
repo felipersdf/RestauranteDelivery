@@ -66,7 +66,7 @@ public class Aplicacao_console {
 //            tot = Fachada.calcularArrecadacao("31");
 //            System.out.println("O total arrecadado do dia foi: " + tot);
 
-            com = Fachada.criarCombo(aa);
+            com = Fachada.criarCombo("Combo1",aa);
             System.out.println("Combo criado " + com);
             System.out.println(com.getId());
             

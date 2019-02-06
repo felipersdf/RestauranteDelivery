@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modelo.Pedido; 
@@ -101,8 +102,8 @@ public class TelaPrincipal {
 					p = Fachada.cadastrarProduto("pizza", 21.0);
 					p = Fachada.cadastrarProduto("guarana", 8.0);
 					p = Fachada.cadastrarProduto("maria joana", 10.0);
-					com = Fachada.criarCombo(listacombo);
-					com = Fachada.criarCombo(listacombo2);
+					com = Fachada.criarCombo("Combo1",listacombo);
+					com = Fachada.criarCombo("Combo2",listacombo2);
 						
 					c = Fachada.cadastrarCliente("Felipe", "01", "felipe@gmail.com" , "Rua X");
 					c = Fachada.cadastrarCliente("maria", "98820-0222", "maria@gmail.com","Rua Y"); 
@@ -229,7 +230,7 @@ public class TelaPrincipal {
 		menuItem_12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String dia = JOptionPane.showInputDialog(null, "Informe o dia: ");
-				double arrec = Fachada.calcularArrecadacao(dia);
+				double arrec = Fachada.calcularArrecadacao(LocalDate.parse(dia).getDayOfMonth());
 				
 				JOptionPane.showMessageDialog(null, "A arrecadação do dia foi de: " + arrec + "!");
 			}

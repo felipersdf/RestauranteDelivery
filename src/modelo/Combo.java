@@ -17,7 +17,7 @@ public class Combo extends Produto {
 
 	@Override
 	public String toString() {
-		return "[componentes=" + componentes + ", preco=" + getPreco() + "]";
+		return "Nome: " + getNome() + " [componentes=" + componentes + ", preco=" + getPreco() + "]";
 	}
 
 	public void setComponentes(ArrayList<Produto> componentes) {
