@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -22,6 +23,8 @@ import modelo.Produto;
 import modelo.Combo;
 import modelo.Cliente;
 import fachada.Fachada;
+import java.awt.Panel;
+import javax.swing.JPanel;
 
 public class TelaPrincipal {
 
@@ -76,7 +79,11 @@ public class TelaPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("Arrecada\u00E7\u00E3o ");
+		frame.setTitle("Delivery Hero");
+		try {
+			frame.setContentPane(new FundoTela("deliveryhero.png"));
+		}	catch (IOException e1) {
+		}
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
@@ -102,7 +109,7 @@ public class TelaPrincipal {
 					p = Fachada.cadastrarProduto("suco", 10.0);
 					p = Fachada.cadastrarProduto("pizza", 21.0);
 					p = Fachada.cadastrarProduto("guarana", 8.0);
-					p = Fachada.cadastrarProduto("maria joana", 10.0);
+					p = Fachada.cadastrarProduto("hamburguer", 10.0);
 					com = Fachada.criarCombo("Combo1",listacombo);
 					com = Fachada.criarCombo("Combo2",listacombo2);
 						
@@ -120,9 +127,6 @@ public class TelaPrincipal {
 					Fachada.adicionarProdutoPedido("98820-0222", 3);
 					Fachada.adicionarProdutoPedido("98820-0222", 6);
 					Fachada.fecharPedido("98820-0222");
-					
-					
-					
 					
 					
 				}catch(Exception e1){
@@ -279,6 +283,6 @@ public class TelaPrincipal {
 		
 		menuItem_13 = new JMenuItem("Criar Combo");
 		menu_2.add(menuItem_13);
+		frame.getContentPane().setLayout(null);
 	}
-
 }

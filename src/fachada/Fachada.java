@@ -380,7 +380,7 @@ public class Fachada {
 			
 			Transport.send(msg);
 			
-			System.out.println("enviado ok");
+			System.out.println("Email enviado com sucesso!");
 		} catch (MessagingException mex) {
 			System.out.println("problema no envio" + mex);
 		}
