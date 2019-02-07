@@ -247,23 +247,17 @@ public class Fachada {
 	}
 
 	public static void excluirPedido(int id) {
-		Pedido pedido = restaurante.localizarPedido(id);
+
 		ArrayList<Pedido> peds = restaurante.getPedidos();
-		ArrayList<Produto> prod = pedido.getProdutos();
-		Collection<Cliente> cli = restaurante.getClientes().values();
 		
 		for(Pedido p: peds) {
 			if(p.getId() == id) {
-				peds.remove(p);
-			restaurante.remover(pedido);
-			for(Produto po: prod) {
-				pedido.remover(po);
-			}
-			for(Cliente c: cli) {
-				if(c.equals(pedido.getCliente())) {
-					c.remover(pedido);
+				for(Produto prod: p.getProdutos()) {
+					prod.remover(p);
 				}
-			}
+			Cliente cli = p.getCliente();
+			restaurante.remover(p);
+			cli.remover(p);
 		}
 }
 	
