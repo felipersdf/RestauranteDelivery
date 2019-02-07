@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.time.*;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.TreeMap;
 import java.text.SimpleDateFormat;
@@ -38,7 +39,14 @@ public class Fachada {
 			if(p.getNome().contains(nome))
 				prods.add(p);
 		}
-		 return prods;
+		
+		prods.sort(new Comparator<Produto>(){
+			public int compare(Produto produto, Produto outroProduto) {
+					return produto.getNome().compareTo(outroProduto.getNome());
+			}
+		});
+		
+	   return prods;
 	}	
 			
 	public static TreeMap<String, Cliente> listarClientes(){
