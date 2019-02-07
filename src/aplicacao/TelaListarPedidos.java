@@ -46,6 +46,7 @@ public class TelaListarPedidos extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaListarPedidos() {
+		setTitle("Listar Pedidos");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

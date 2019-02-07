@@ -46,6 +46,7 @@ public class TelaPrincipal {
 	private JMenuItem menuItem_12;
 	private JMenuItem menuItem_13;
 	private JMenuItem menuItem_14;
+	private JMenuItem menuItem_15;
 
 	/**
 	 * Launch the application.
@@ -247,6 +248,15 @@ public class TelaPrincipal {
 				p.setVisible(true);
 			}
 		});
+		
+		menuItem_15 = new JMenuItem("Listar Produtos");
+		menuItem_15.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaListarProdutos o = new TelaListarProdutos();
+				o.setVisible(true);
+			}
+		});
+		menu_2.add(menuItem_15);
 		menu_2.add(menuItem_8);
 		
 		menuItem_9 = new JMenuItem("Adicionar Produto em Pedido");
