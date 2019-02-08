@@ -64,7 +64,7 @@ public class TelaListarClientes extends JFrame {
 				
 				clientes = Fachada.listarClientes().values();
 				for(Cliente cli: clientes) {
-					texto += "Nome: " + cli.getNome() + ", Endereço: " + cli.getEndereco() + ", Email: "+ cli.getEmail() + "\n";
+					texto += "Nome: " + cli.getNome() + ", Pedidos: " + cli.getPedidos().size() + "\n";
 				}
 			textArea.setText(texto);
 			}

@@ -62,7 +62,7 @@ public class TelaRetirarProduto extends JFrame {
 		contentPane.add(label);
 		
 		label_1 = new JLabel("Produto: ");
-		label_1.setBounds(22, 69, 46, 14);
+		label_1.setBounds(22, 69, 82, 14);
 		contentPane.add(label_1);
 		
 		textField = new JTextField();

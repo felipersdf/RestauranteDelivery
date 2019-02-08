@@ -60,7 +60,8 @@ public class TelaListarProdutos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nomeProduto = textField.getText();
 				ArrayList<Produto> prods = new ArrayList<>();
-				
+				text = "";
+				textArea.setText(text);
 				if(nomeProduto != "") {
 					prods = Fachada.listarProdutos(nomeProduto);
 					for(Produto p: prods) {

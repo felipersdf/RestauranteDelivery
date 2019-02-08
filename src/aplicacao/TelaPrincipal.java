@@ -229,6 +229,12 @@ public class TelaPrincipal {
 		menu_1.add(menuItem_14);
 		
 		menuItem_11 = new JMenuItem("Enviar Pedido");
+		menuItem_11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaEnviarPedido a = new TelaEnviarPedido();
+				a.setVisible(true);
+			}
+		});
 		menu_1.add(menuItem_11);
 		
 		menuItem_12 = new JMenuItem("Arrecada\u00E7\u00E3o");
@@ -282,6 +288,12 @@ public class TelaPrincipal {
 		menu_2.add(menuItem_10);
 		
 		menuItem_13 = new JMenuItem("Criar Combo");
+		menuItem_13.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCriarCombo a = new TelaCriarCombo();
+				a.setVisible(true);
+			}
+		});
 		menu_2.add(menuItem_13);
 		frame.getContentPane().setLayout(null);
 	}

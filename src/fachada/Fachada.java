@@ -302,6 +302,7 @@ public class Fachada {
 		Cliente cli = restaurante.localizarCliente(telefone);
 		Pedido ultimoPedido = cli.getUltimoPedido(); 
 		
+		final String emailEnvio = "canalhabot@gmail.com";
 		final String senha = "canalhabot01@";
 		
 		Properties props = new Properties();
@@ -313,7 +314,7 @@ public class Fachada {
 		
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(email, senha);
+				return new PasswordAuthentication(emailEnvio, senha);
 			}
 		});
 
@@ -340,7 +341,7 @@ public class Fachada {
 			MimeMessage msg = new MimeMessage(session);
 
 			//inserir os emails 
-			Address from = new InternetAddress(email);
+			Address from = new InternetAddress(emailEnvio);
 			Address to = new InternetAddress(email);
 
 			//configurando o remetente e o destinatario
