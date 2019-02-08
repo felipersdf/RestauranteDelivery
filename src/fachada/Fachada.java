@@ -282,10 +282,14 @@ public class Fachada {
 		return c;
 	}
 
-	public static void excluirPedido(int id) {
+	public static void excluirPedido(int id) throws Exception {
 
 		ArrayList<Pedido> peds = restaurante.getPedidos();
-		
+		Pedido pe = restaurante.localizarPedido(id);
+
+		if(pe == null)
+			throw new Exception("Pedido não encontrado!");
+		else {
 		for(Pedido p: peds) {
 			if(p.getId() == id) {
 				for(Produto prod: p.getProdutos()) {
@@ -296,6 +300,7 @@ public class Fachada {
 			cli.remover(p);
 		}
 }
+		}
 	}	
 	public static void enviarPedido(String telefone, String email) throws MessagingException {
 		Document document = new Document();

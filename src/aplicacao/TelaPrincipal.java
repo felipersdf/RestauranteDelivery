@@ -222,8 +222,12 @@ public class TelaPrincipal {
 		menuItem_14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String id = JOptionPane.showInputDialog(null, "Digite o id do pedido: ");
-				Fachada.excluirPedido(Integer.parseInt(id));
-				JOptionPane.showMessageDialog(null,"Pedido "+Integer.parseInt(id)+" excluído!");
+				try {
+					Fachada.excluirPedido(Integer.parseInt(id));
+					JOptionPane.showMessageDialog(null,"Pedido "+Integer.parseInt(id)+" excluído!");
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				};
 			}
 		});
 		menu_1.add(menuItem_14);
