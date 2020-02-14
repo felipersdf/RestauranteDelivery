@@ -37,6 +37,6 @@
 
 ## :notebook: About 
 
-This repository consists of storing the project produced in the discipline of Oriented Objected Programming 2019.1
+This repository consists of storing the second project produced in the discipline of Oriented Objected Programming 2018.2
 
 ---
