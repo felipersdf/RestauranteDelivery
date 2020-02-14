@@ -9,7 +9,7 @@
 </p>
 
 <h1 align="center">
-   Oriented Objects Programming 2019.1
+   Oriented Objects Programming 2018.2
 </h1>
 
 <p align="center">
